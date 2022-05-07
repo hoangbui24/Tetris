@@ -7,4 +7,44 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="HinhAnh\Background.png" />
+    <None Remove="HinhAnh\Block-Empty.png" />
+    <None Remove="HinhAnh\Block-I.png" />
+    <None Remove="HinhAnh\Block-J.png" />
+    <None Remove="HinhAnh\Block-L.png" />
+    <None Remove="HinhAnh\Block-O.png" />
+    <None Remove="HinhAnh\Block-S.png" />
+    <None Remove="HinhAnh\Block-T.png" />
+    <None Remove="HinhAnh\Block-Z.png" />
+    <None Remove="HinhAnh\TileBlue.png" />
+    <None Remove="HinhAnh\TileCyan.png" />
+    <None Remove="HinhAnh\TileEmpty.png" />
+    <None Remove="HinhAnh\TileGreen.png" />
+    <None Remove="HinhAnh\TileOrange.png" />
+    <None Remove="HinhAnh\TilePurple.png" />
+    <None Remove="HinhAnh\TileRed.png" />
+    <None Remove="HinhAnh\TileYellow.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="HinhAnh\Background.png" />
+    <Resource Include="HinhAnh\Block-Empty.png" />
+    <Resource Include="HinhAnh\Block-I.png" />
+    <Resource Include="HinhAnh\Block-J.png" />
+    <Resource Include="HinhAnh\Block-L.png" />
+    <Resource Include="HinhAnh\Block-O.png" />
+    <Resource Include="HinhAnh\Block-S.png" />
+    <Resource Include="HinhAnh\Block-T.png" />
+    <Resource Include="HinhAnh\Block-Z.png" />
+    <Resource Include="HinhAnh\TileBlue.png" />
+    <Resource Include="HinhAnh\TileCyan.png" />
+    <Resource Include="HinhAnh\TileEmpty.png" />
+    <Resource Include="HinhAnh\TileGreen.png" />
+    <Resource Include="HinhAnh\TileOrange.png" />
+    <Resource Include="HinhAnh\TilePurple.png" />
+    <Resource Include="HinhAnh\TileRed.png" />
+    <Resource Include="HinhAnh\TileYellow.png" />
+  </ItemGroup>
+
 </Project>

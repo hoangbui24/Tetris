@@ -87,9 +87,9 @@ namespace Tetris
             }
 
             //Xoa tat ca cac hang
-            public int ClearFullRows(int cleared)
+            public int ClearFullRows()
             {
-                cleared = 0;
+                int cleared = 0;
                 for (int r = Rows - 1; r >= 0; r--)
                 {
                     if (isRowFull(r))

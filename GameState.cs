@@ -76,5 +76,34 @@ namespace Tetris
         {
             return !(gameGrid.isRowEmpty(0) && gameGrid.isRowEmpty(1));
         }
+
+        private void PlaceTetro()
+        {
+            foreach(Pos p in CurrentTetro.TilePositions())
+            {
+                gameGrid[p.Row, p.Column] = CurrentTetro.Id;
+            }
+
+            gameGrid.ClearFullRows();
+
+            if (isGameOver())
+            {
+                GameOver = true;
+            }
+            else
+            {
+                CurrentTetro = queue.GetAndUpdate();
+            }
+        }
+
+        public void MoveDown()
+        {
+            CurrentTetro.Move(1,0);
+            if (!TetrominoesFits())
+            {
+                CurrentTetro.Move(-1, 0);
+                PlaceTetro();
+            }
+        }
     }
 }
