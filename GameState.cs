@@ -27,6 +27,16 @@ namespace Tetris
             queue = new TetrominoesQueue();
             currentTetro = queue.GetAndUpdate();
         }
-
+        private bool TetrominoesFits()
+        {
+            foreach (Pos p in CurrentTetro.TilePositions())
+            {
+                if(gameGrid.isEmpty(p.Row, p.Column))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
