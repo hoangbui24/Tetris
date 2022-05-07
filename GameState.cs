@@ -38,5 +38,43 @@ namespace Tetris
             }
             return true;
         }
+        public void RotateTetroCW()
+        {
+            CurrentTetro.RotateClockWise();
+            if (!TetrominoesFits())
+            {
+                CurrentTetro.RotateCouterClockWise();
+            }
+        }
+        public void RotateTetroCCW()
+        {
+            CurrentTetro.RotateCouterClockWise();
+            if (!TetrominoesFits())
+            {
+                CurrentTetro.RotateClockWise();
+            }
+        }
+        public void MoveRight()
+        {
+            CurrentTetro.Move(0, 1);
+            if (!TetrominoesFits())
+            {
+                CurrentTetro.Move(0,-1);
+            }
+        }
+
+        public void MoveLeft()
+        {
+            CurrentTetro.Move(0,-1);
+            if (!TetrominoesFits())
+            {
+                CurrentTetro.Move(0,1);
+            }
+        }
+
+        public bool isGameOver()
+        {
+            return !(gameGrid.isRowEmpty(0) && gameGrid.isRowEmpty(1));
+        }
     }
 }
