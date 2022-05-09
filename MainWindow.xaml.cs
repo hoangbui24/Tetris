@@ -52,6 +52,7 @@ namespace Tetris
         public MainWindow()
         {
             InitializeComponent();
+            imageControl = SetUp(gameState.gameGrid);
         }
 
         private Image[,] SetUp(GameGrid gameGrid)
@@ -76,6 +77,31 @@ namespace Tetris
             }
             return imageControl;
         }
+        private void DrawGrid(GameGrid grid)
+        {
+            for (int r = 0; r < grid.Rows; r++)
+            {
+                for (int c = 0; c < grid.Cols; c++)
+                {
+                    int id = grid[r,c];
+                    imageControl[r,c].Source = imageSources[id];
+                }    
+            }    
+        }
+
+        private void DrawTetro(Tetrominoes tetrominoes)
+        {
+            foreach(Pos p in tetrominoes.TilePositions())
+            {
+                imageControl[p.Row, p.Column].Source = TetrominoesImage[tetrominoes.Id];
+            }
+        }
+
+        private void Draw(GameState gamestate)
+        {
+            DrawGrid(gamestate.gameGrid);
+            DrawTetro(gamestate.CurrentTetro);
+        }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -84,10 +110,15 @@ namespace Tetris
 
         private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Draw(gameState);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PlayAgain_Click(object sender, RoutedEventArgs e)
         {
 
         }
