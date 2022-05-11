@@ -64,7 +64,7 @@ namespace Tetris
             {
                 for (int j = 0; j < gameGrid.Cols; j++)
                 {
-                    Image image = new Image()
+                    Image image = new Image
                     {
                         Width = cellSize,
                         Height = cellSize
@@ -93,7 +93,7 @@ namespace Tetris
         {
             foreach(Pos p in tetrominoes.TilePositions())
             {
-                imageControl[p.Row, p.Column].Source = TetrominoesImage[tetrominoes.Id];
+                imageControl[p.Row, p.Column].Source = imageSources[tetrominoes.Id];
             }
         }
 
@@ -102,21 +102,58 @@ namespace Tetris
             DrawGrid(gamestate.gameGrid);
             DrawTetro(gamestate.CurrentTetro);
         }
+        private async Task GameLoop()
+        {
+            Draw(gameState);
+            while (!gameState.GameOver)
+            {
+                await Task.Delay(500);
+                gameState.MoveDown();
+                Draw(gameState);
+            }
+            GameOverMenu.Visibility = Visibility.Visible;
+        }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-
-        }
-
-        private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
-        {
+            if (gameState.GameOver)
+            {
+                return;
+            }
+            switch (e.Key)
+            {
+                case Key.Left:
+                case Key.D:
+                    gameState.MoveLeft();
+                    break;
+                case Key.Right:
+                case Key.A:
+                    gameState.MoveRight();
+                    break;
+                case Key.Down:
+                case Key.S:
+                    gameState.MoveDown();
+                    break;
+                case Key.Up:
+                case Key.W:
+                    gameState.RotateTetroCW();
+                    break;
+                case Key.Space:
+                case Key.Z:
+                    gameState.RotateTetroCCW();
+                    break;
+                default:
+                    return;
+            }
             Draw(gameState);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-
+            await GameLoop();
         }
+
+        
 
         private void PlayAgain_Click(object sender, RoutedEventArgs e)
         {
