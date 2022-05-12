@@ -8,16 +8,17 @@ namespace Tetris
 {
     public class J_Tetrominoes : Tetrominoes
     {
-        private readonly Pos[][] tiles = new Pos[][]
+        //Khoi tao vi tri cua khoi J trong o 3x3
+        protected override Pos[][] Tiles => new Pos[][]
         {
             new Pos[] { new(0,0), new(1,0), new(1,1), new(1,2) },
             new Pos[] { new(0,1), new(0,2), new(1,1), new(2,1) },
             new Pos[] { new(1,0), new(1,1), new(1,2), new(2,2) },
-            new Pos[] { new(0,1), new(1,1), new(2,0), new(2,2) },
+            new Pos[] { new(0,1), new(1,1), new(2,0), new(2,1) }
         };
         public override int Id => 2;
-        protected override Pos startOffset => new Pos(0,3);
-        protected override Pos[][] Tiles => tiles;
+        protected override Pos startOffset => new(0,5);
+        
 
 
     }

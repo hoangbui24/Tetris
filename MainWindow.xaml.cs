@@ -46,13 +46,15 @@ namespace Tetris
         };
 
         private readonly Image[,] imageControl;
-
+        private readonly int maxDelay = 1000;
+        private readonly int minDelay = 75;
+        private readonly int delayDecrease = 25;
         private GameState gameState = new GameState();
 
         public MainWindow()
         {
             InitializeComponent();
-            imageControl = SetUp(gameState.gameGrid);
+            imageControl = SetUp(gameState.GameGrid);
         }
 
         private Image[,] SetUp(GameGrid gameGrid)
@@ -84,6 +86,7 @@ namespace Tetris
                 for (int c = 0; c < grid.Cols; c++)
                 {
                     int id = grid[r,c];
+                    imageControl[r, c].Opacity = 1;
                     imageControl[r,c].Source = imageSources[id];
                 }    
             }    
@@ -93,25 +96,61 @@ namespace Tetris
         {
             foreach(Pos p in tetrominoes.TilePositions())
             {
+                imageControl[p.Row, p.Column].Opacity = 1;
                 imageControl[p.Row, p.Column].Source = imageSources[tetrominoes.Id];
             }
         }
 
+        private void DrawNextTetro(TetrominoesQueue tetrominoesQueue)
+        {
+            Tetrominoes next = tetrominoesQueue.NextTetro;
+            NextImage.Source = TetrominoesImage[next.Id];
+        }
+
+        private void DrawHeldTetro(Tetrominoes heldTetro)
+        {
+            if (heldTetro == null)
+            {
+                HoldImage.Source = TetrominoesImage[0];
+            }
+            else
+            {
+                HoldImage.Source = TetrominoesImage[heldTetro.Id];
+            }          
+        }
+
+        private void DrawGhostTetro(Tetrominoes tetrominoes)
+        {
+            int dropDistance = gameState.TetroDropDistance();
+            foreach (Pos p in tetrominoes.TilePositions())
+            {
+                imageControl[p.Row + dropDistance, p.Column].Opacity = 0.25;
+                imageControl[p.Row + dropDistance, p.Column].Source = imageSources[tetrominoes.Id];
+            }    
+        }
         private void Draw(GameState gamestate)
         {
-            DrawGrid(gamestate.gameGrid);
+            DrawGrid(gamestate.GameGrid);
+            DrawGhostTetro(gamestate.CurrentTetro);
             DrawTetro(gamestate.CurrentTetro);
+            DrawNextTetro(gamestate.queue);
+            DrawHeldTetro(gamestate.HeldTetro);
+            ScoreText.Text = $"Score: {gamestate.Score}";
         }
         private async Task GameLoop()
         {
             Draw(gameState);
             while (!gameState.GameOver)
             {
-                await Task.Delay(500);
+                //Tang thoi gian roi cua khoi tetro neu diem cua nguoi choi cang cao
+                int delay = Math.Max(minDelay, maxDelay - (gameState.Score * delayDecrease));   
+                await Task.Delay(delay);
                 gameState.MoveDown();
                 Draw(gameState);
             }
             GameOverMenu.Visibility = Visibility.Visible;
+            //ScoreText.Visibility = Visibility.Visible;
+            FinalScoreText.Text = $"Score: {gameState.Score}";
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -123,11 +162,11 @@ namespace Tetris
             switch (e.Key)
             {
                 case Key.Left:
-                case Key.D:
+                case Key.A:
                     gameState.MoveLeft();
                     break;
                 case Key.Right:
-                case Key.A:
+                case Key.D:
                     gameState.MoveRight();
                     break;
                 case Key.Down:
@@ -139,8 +178,13 @@ namespace Tetris
                     gameState.RotateTetroCW();
                     break;
                 case Key.Space:
+                    gameState.DropTetro();
+                    break;
                 case Key.Z:
                     gameState.RotateTetroCCW();
+                    break;
+                case Key.C:
+                    gameState.HoldTeto();
                     break;
                 default:
                     return;
@@ -152,12 +196,13 @@ namespace Tetris
         {
             await GameLoop();
         }
-
         
 
-        private void PlayAgain_Click(object sender, RoutedEventArgs e)
+        private async void PlayAgain_Click(object sender, RoutedEventArgs e)
         {
-
+            gameState = new GameState();
+            GameOverMenu.Visibility = Visibility.Hidden;
+            await GameLoop();
         }
     }
 }

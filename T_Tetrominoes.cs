@@ -8,15 +8,18 @@ namespace Tetris
 {
     public class T_Tetrominoes : Tetrominoes
     {
-        private readonly Pos[][] tiles = new Pos[][]
+        protected override Pos[][] Tiles => new Pos[][]
         {
+            //Khoi tao cac vi tri cua khoi T
             new Pos[] { new(1,0), new(1,1), new(1,2), new(2,1) },
             new Pos[] { new(0,1), new(1,0), new(1,1), new(1,2) },
             new Pos[] { new(0,1), new(1,1), new(1,2), new(2,1) },
             new Pos[] { new(0,1), new(1,0), new(1,1), new(2,1) },
         };
+        
+        //gan cho khoi nay co ID = 6
         public override int Id => 6;
-        protected override Pos startOffset => new Pos(0,3);
-        protected override Pos[][] Tiles => tiles;
+        protected override Pos startOffset => new(0,3);
+        
     }
 }

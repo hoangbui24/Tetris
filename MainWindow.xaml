@@ -80,10 +80,12 @@
                            FontSize="48"
                            TextAlignment="Center">
                 </TextBlock>
-                <TextBlock Text="Score: "
+                <TextBlock x:Name="FinalScoreText"
+                           Text="Score: "
                            FontSize="36"
                            TextAlignment="Center">
                 </TextBlock>
+                
                 <Button Content="Play Again"
                         Background="Aquamarine"
                         Margin="0,0,20,0"

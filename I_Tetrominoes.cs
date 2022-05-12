@@ -14,7 +14,7 @@ namespace Tetris
                 new Pos[] { new (1,0), new (1,1), new (1,2), new (1,3) },
                 new Pos[] { new (2,0), new (2,1), new (2,2), new (2,3) },
                 new Pos[] { new (0,1), new (1,1), new (2,1), new (3,1) },
-                new Pos[] { new (0,2), new (1,2), new (2,2), new (3,2) },
+                new Pos[] { new (0,2), new (1,2), new (2,2), new (3,2) }
             };
 
         public override int Id => 1;

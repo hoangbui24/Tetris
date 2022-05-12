@@ -8,7 +8,7 @@ namespace Tetris
 {
     public class S_Tetrominoes : Tetrominoes
     {
-        private readonly Pos[][] tiles = new Pos[][]
+        protected override Pos[][] Tiles => new Pos[][]
         {
             new Pos[] { new(0,1), new(0,2), new(1,0), new(1,1) },
             new Pos[] { new(0,0), new(1,0), new(1,1), new(2,1) },
@@ -16,7 +16,7 @@ namespace Tetris
             new Pos[] { new(0,1), new(1,1), new(1,2), new(2,2) },
         };
         public override int Id => 5;
-        protected override Pos startOffset => new Pos(0,3);
-        protected override Pos[][] Tiles => tiles;
+        protected override Pos startOffset => new(0,3);
+        
     }
 }
