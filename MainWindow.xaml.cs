@@ -25,11 +25,11 @@ namespace Tetris
             new BitmapImage(new Uri("HinhAnh/TileEmpty.png", UriKind.Relative)),
             new BitmapImage(new Uri("HinhAnh/TileCyan.png", UriKind.Relative)),
             new BitmapImage(new Uri("HinhAnh/TileBlue.png", UriKind.Relative)),
-            new BitmapImage(new Uri("HinhAnh/TileGreen.png", UriKind.Relative)),
-            new BitmapImage(new Uri("HinhAnh/TileRed.png", UriKind.Relative)),
             new BitmapImage(new Uri("HinhAnh/TileOrange.png", UriKind.Relative)),
             new BitmapImage(new Uri("HinhAnh/TileYellow.png", UriKind.Relative)),
+            new BitmapImage(new Uri("HinhAnh/TileGreen.png", UriKind.Relative)),
             new BitmapImage(new Uri("HinhAnh/TilePurple.png", UriKind.Relative)),
+            new BitmapImage(new Uri("HinhAnh/TileRed.png", UriKind.Relative)),
         };
 
         private readonly ImageSource[] TetrominoesImage = new ImageSource[]
@@ -37,11 +37,11 @@ namespace Tetris
             new BitmapImage(new Uri("HinhAnh/Block-Empty.png", UriKind.Relative)),
             new BitmapImage(new Uri("HinhAnh/Block-I.png", UriKind.Relative)),
             new BitmapImage(new Uri("HinhAnh/Block-J.png", UriKind.Relative)),
-            new BitmapImage(new Uri("HinhAnh/Block-S.png", UriKind.Relative)),
-            new BitmapImage(new Uri("HinhAnh/Block-Z.png", UriKind.Relative)),
             new BitmapImage(new Uri("HinhAnh/Block-L.png", UriKind.Relative)),
             new BitmapImage(new Uri("HinhAnh/Block-O.png", UriKind.Relative)),
+            new BitmapImage(new Uri("HinhAnh/Block-S.png", UriKind.Relative)),
             new BitmapImage(new Uri("HinhAnh/Block-T.png", UriKind.Relative)),
+            new BitmapImage(new Uri("HinhAnh/Block-Z.png", UriKind.Relative)),
 
         };
 

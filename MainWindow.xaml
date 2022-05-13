@@ -29,13 +29,26 @@
 
         <Viewbox Grid.Row="1"
                 Grid.Column="1"
-                 Margin="0,20,0,20">
+                 Margin="0,20,0,20"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center">
+            
             <Canvas x:Name="GameCanvas"
                 Background="Black"
-                Width="250"
+                
+                Width="248"
                 Height="500"
                 ClipToBounds="True"
-                Loaded="GameCanvas_Loaded"/>
+                Loaded="GameCanvas_Loaded" RenderTransformOrigin="0.5,0.5">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-0.29"/>
+                        <RotateTransform Angle="-0.356"/>
+                        <TranslateTransform Y="-0.633"/>
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+            </Canvas>
         </Viewbox>
 
         <TextBlock x:Name="ScoreText"

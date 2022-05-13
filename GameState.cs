@@ -179,5 +179,9 @@ namespace Tetris
             CurrentTetro.Move(TetroDropDistance(), 0);
             PlaceTetro();
         }
+        public void Pause()
+        {
+            
+        }
     }
 }
